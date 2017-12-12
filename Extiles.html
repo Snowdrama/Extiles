@@ -1,129 +1,93 @@
 <html> 
+    <head>
+
+    </head>
     <body style="text-align:center;">
-        <canvas id="testCanvas">Your Browser does not support canvas</canvas><br>
+        <table style="margin:auto;">
+            <tr>
+                <td>Sprite Size:</td> 
+                <td><input type='text' id='spriteSize' placeholder="Sprite Size" value="16" /></td>
+            </tr>
+            
+            <tr>
+                <td>Extrude Size:</td> 
+                <td><input type='text' id='extrudeSize' placeholder="Extrude Size" value="1" /></td>
+            </tr>
+            
+            <tr>
+                <td>Show Animation:</td> 
+                <td><input type='checkbox' id='showAnimation' /></td>
+            </tr>
+            
+            <tr>
+                <td>Animation Time(ms):</td> 
+                <td><input type='text' id='animationTime' placeholder="Animation Time" value="60" /></td>
+            </tr>
+
+        </table>
+
+        <input type='file' id='imgfile' />
+        <input type='button' id='btnLoad' value='Load' onclick='loadImage();' /><br>
+    
+        <canvas id="canvas">Your Browser does not support canvas</canvas><br>
         <b>Instructions:</b>
         <div style="text-align:left; width:500px; margin:auto;">
             <ol>
-                <li>Put your image file somewhere in the local folder(like the img folder in the root)</li>
-                <li>Add <b>?img=</b> to the URL. For example <b>?img=GrassTiles.png</b></li>
-                <li>The default is 16, if the tiles are larger than 16x16 add <b>&spriteSize=</b> and set the value. For example <b>&spriteSize=32</b> for 32x32</li>
-                <li>The default extrude is 1px, if larger is needed set the <b>&extrudeSize=</b> to the number of pixels to extrude. For example <b>&extrudeSize=3</b> will extrude 3 pixels in each direction</li>
+                <li>Set your sprite size</li>
+                <li>Set your Extrude Size</li>
+                <li>Choose the file</li>
+                <li>Click Load</li>
             <ol>
         </div>
         To save, right on the generated image and save it!
         <script>
-            var canvas = document.getElementById('testCanvas');
-            var ctx = canvas.getContext('2d');
-            
-            var url_string = window.location; //window.location.href
-            var url = new URL(url_string);
-
-            // First load the Image
-            spriteSheet = new Image();
-
-            // Define sprite size
-            spriteSize = 16;
-            if(url.searchParams.get("ss")){
-                spriteSize = url.searchParams.get("ss");
-            } else if(url.searchParams.get("spriteSize")){
-                spriteSize = url.searchParams.get("spriteSize");
-            }
-
-            //define the extrude size
-            var extrudeSize = 1;
-            if(url.searchParams.get("es")){
-                extrudeSize = parseInt(url.searchParams.get("es"));
-            } else if(url.searchParams.get("extrudeSize")){
-                extrudeSize = parseInt(url.searchParams.get("extrudeSize"));
-            }
-
-            var showAnimation = false; 
-            if(url.searchParams.get("sa")){
-                showAnimation = true; //I don't care what it's set to as long as it's set
-            } else if(url.searchParams.get("showAnimation")){
-                showAnimation = true; //I don't care what it's set to as long as it's set
-            }
-
-            var animationTime = 10;
-            if(url.searchParams.get("at")){
-                animationTime = parseInt(url.searchParams.get("at"));
-            } else if(url.searchParams.get("animationTime")){
-                animationTime = parseInt(url.searchParams.get("animationTime"));
-            }
-
-            function sleep(ms) {
-                return new Promise(resolve => setTimeout(resolve, ms));
-            }
-
-            spriteSheet.onload = async function () {
-                numberOfTilesWide = (spriteSheet.width/spriteSize);
-                numberOfTilesHigh = (spriteSheet.height/spriteSize);
-                //We make the canvas width the width of the original sheet + the extrude size for each tile
-                //* = original pixel
-                //+ = new Pixel
-                //Example 8 pixels becomes
-                //********
-                //Becomes
-                //+****++****+
-                //Or extrude 2
-                //++****++++****++
-                canvas.width  = spriteSheet.width  + ((numberOfTilesWide * extrudeSize) * 2);
-                canvas.height = spriteSheet.height + ((numberOfTilesHigh * extrudeSize) * 2);
-                // 32x32 image of 16 tiles is a 2x2 tile sprite
-                for(y = 0; y < spriteSheet.height/spriteSize; y++){
-                    for(x = 0; x < spriteSheet.width/spriteSize; x++){
-                        //The coordinate on the original sheet
-                        var tileXCoord = x * spriteSize;
-                        var tileYCoord = y * spriteSize;
-    
-                        //the new coordinate of the main tile new sheet
-                        var newTileXCoord = tileXCoord + ((x*2)*extrudeSize)+extrudeSize;
-                        var newTileYCoord = tileYCoord + ((y*2)*extrudeSize)+extrudeSize;
-
-                        //Draw the tile in all the corners
-                        for(var i = extrudeSize; i >= 0; i--){
-                            ctx.drawImage(spriteSheet, tileXCoord, tileYCoord, spriteSize, spriteSize, newTileXCoord-i, newTileYCoord-i, spriteSize, spriteSize);
-                            if(showAnimation)await sleep(animationTime);
-
-                            ctx.drawImage(spriteSheet, tileXCoord, tileYCoord, spriteSize, spriteSize, newTileXCoord-i, newTileYCoord+i, spriteSize, spriteSize);
-                            if(showAnimation)await sleep(animationTime);
-
-                            ctx.drawImage(spriteSheet, tileXCoord, tileYCoord, spriteSize, spriteSize, newTileXCoord+i, newTileYCoord-i, spriteSize, spriteSize);
-                            if(showAnimation)await sleep(animationTime);
-
-                            ctx.drawImage(spriteSheet, tileXCoord, tileYCoord, spriteSize, spriteSize, newTileXCoord+i, newTileYCoord+i, spriteSize, spriteSize);
-                            if(showAnimation)await sleep(animationTime);
-                        }
-                        
-                        //draw the tile at all the cardinals
-                        for(var i = extrudeSize; i >= 0; i--){
-                            ctx.drawImage(spriteSheet, tileXCoord, tileYCoord, spriteSize, spriteSize, newTileXCoord-i, newTileYCoord, spriteSize, spriteSize);
-                            if(showAnimation)await sleep(animationTime);
-
-                            ctx.drawImage(spriteSheet, tileXCoord, tileYCoord, spriteSize, spriteSize, newTileXCoord+i, newTileYCoord, spriteSize, spriteSize);
-                            if(showAnimation)await sleep(animationTime);
-                            
-                            ctx.drawImage(spriteSheet, tileXCoord, tileYCoord, spriteSize, spriteSize, newTileXCoord, newTileYCoord-i, spriteSize, spriteSize);
-                            if(showAnimation)await sleep(animationTime);
-                            
-                            ctx.drawImage(spriteSheet, tileXCoord, tileYCoord, spriteSize, spriteSize, newTileXCoord, newTileYCoord+i, spriteSize, spriteSize);
-                            if(showAnimation)await sleep(animationTime);
-                        }
-
-                        //draw it again smack dab in the middle
-                        ctx.drawImage(spriteSheet, tileXCoord, tileYCoord, spriteSize, spriteSize, newTileXCoord, newTileYCoord, spriteSize, spriteSize);
-                        if(showAnimation)await sleep(animationTime);
-                    }
+            var input, file, fr, img;
+            function loadImage() {
+                if (typeof window.FileReader !== 'function') {
+                    write("The file API isn't supported on this browser yet.");
+                    return;
                 }
-            };
-            
-            if(url.searchParams.get("img")){
-                spriteSheet.src = url.searchParams.get("img");
-                console.log(spriteSheet.src);
-            } else {
-                extrudeSize = 0;
-                spriteSheet.src = "img/default.png";
+                
+                input = document.getElementById('imgfile');
+                if (!input) {
+                    write("Um, couldn't find the imgfile element.");
+                } else if (!input.files) {
+                    write("This browser doesn't seem to support the `files` property of file inputs.");
+                } else if (!input.files[0]) {
+                    write("Please select a file before clicking 'Load'");
+                } else {
+                    file = input.files[0];
+                    fr = new FileReader();
+                    fr.onload = createImage;
+                    fr.readAsDataURL(file);
+                }
+            }
+
+            //Create and load the image 
+            function createImage() {
+                img = new Image();
+                img.onload = imageLoaded;
+                img.src = fr.result;
+            }
+
+            // function imageLoaded() {
+            //     //
+            //     var canvas = document.getElementById("canvas")
+            //     canvas.width = img.width;
+            //     canvas.height = img.height;
+            //     var ctx = canvas.getContext("2d");
+            //     ctx.drawImage(img,0,0);
+            //     alert(canvas.toDataURL("image/png"));
+            // }
+        
+
+            function write(msg) {
+                console.log(msg);
+                // var p = document.createElement('p');
+                // p.innerHTML = msg;
+                // document.body.appendChild(p);
             }
         </script>
+        <script type="text/javascript" src="imageExtruder.js"></script>
     </body>
 </html>
