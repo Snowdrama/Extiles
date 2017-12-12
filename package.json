@@ -1,0 +1,38 @@
+{
+  "name": "extiles",
+  "productName": "Extiles",
+  "version": "0.1.0",
+  "description": "2D Tilesheet Extruder",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "",
+    "start": "npm run build && node_modules/.bin/electron .",
+    "bundle": "npm run build && npm run bundle-win32-x64",
+    "bundle-win32-x64": "electron-packager . --platform=win32 --arch=x64",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JayPC/Extiles.git"
+  },
+  "keywords": [
+    "tiles",
+    "sprites",
+    "tile",
+    "sprite",
+    "extruder"
+  ],
+  "author": "John Close (https://twiter.com/snowdramagames)",
+  "contributors": [
+    "Andreas Fischer (https://twitter.com/vengarioth)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JayPC/Extiles/issues"
+  },
+  "homepage": "https://github.com/JayPC/Extiles#readme",
+  "devDependencies": {
+    "electron": "^1.7.9",
+    "electron-packager": "^10.1.0"
+  }
+}
