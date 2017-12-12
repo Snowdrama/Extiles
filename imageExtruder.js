@@ -74,4 +74,9 @@ async function imageLoaded() {
             if(showAnimation)await sleep(animationTime);
         }
     }
+
+    var button = document.getElementById('btn-download');
+    var dataURL = canvas.toDataURL('image/png');
+    button.href = dataURL;
+    button.download = "extrudedImage.png";
 }
