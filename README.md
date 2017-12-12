@@ -2,7 +2,11 @@
 2D Tilesheet Extruder
 
 ### Electron app
-To use the electron app first run `npm i` to install npm dependencies and then `npm start` to start the electron app during development. To make a build run `npm run bundle` to build all platforms or `npm run bundle-x86_64-windows`, `npm run bundle-x86_64-mac` to build the respective platforms. 
+To use the electron setup run:
+* `npm i` to install all dependencies
+* `npm start` to rebuild the js app and run electron
+* `npm run bundle` to build the electron app for all supported platforms (currently only windows)
+* `npm run bundle-win32-x64` to build the electron app for windows 64 bit
 
 ### Instructions:
 1. Put your image file somewhere in the local folder(like the img folder in the root)

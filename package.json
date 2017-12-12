@@ -3,10 +3,11 @@
   "productName": "Extiles",
   "version": "0.1.0",
   "description": "2D Tilesheet Extruder",
-  "main": "src/index.js",
+  "main": "src/main.js",
   "scripts": {
-    "build": "",
-    "start": "npm run build && node_modules/.bin/electron .",
+    "start": "npm run build && npm run electron",
+    "build": "rimraf dist && mkdirp dist && browserify src/index.js -o dist/extiles.js -t [ babelify ]",
+    "electron": "./node_modules/.bin/electron .",
     "bundle": "npm run build && npm run bundle-win32-x64",
     "bundle-win32-x64": "electron-packager . --platform=win32 --arch=x64",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -31,8 +32,24 @@
     "url": "https://github.com/JayPC/Extiles/issues"
   },
   "homepage": "https://github.com/JayPC/Extiles#readme",
+  "dependencies": {
+    "react": "^16.2.0"
+  },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^8.0.0",
+    "browserify": "^14.5.0",
     "electron": "^1.7.9",
-    "electron-packager": "^10.1.0"
+    "electron-packager": "^10.1.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.2"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ]
   }
 }
