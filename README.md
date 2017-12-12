@@ -1,6 +1,13 @@
 # Extiles
 2D Tilesheet Extruder
 
+### Electron app
+To use the electron setup run:
+* `npm i` to install all dependencies
+* `npm start` to rebuild the js app and run electron
+* `npm run bundle` to build the electron app for all supported platforms (currently only windows)
+* `npm run bundle-win32-x64` to build the electron app for windows 64 bit
+
 ### Instructions:
 1. Put your image file somewhere in the local folder(like the img folder in the root)
 2. Add **?img=** to the URL. For example **?img=GrassTiles.png**
