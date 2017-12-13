@@ -65,3 +65,6 @@ typings/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+#Default build folders
+Extiles-win32-x64/

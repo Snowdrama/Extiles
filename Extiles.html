@@ -1,45 +1,63 @@
-<html> 
+<html>
     <head>
-
+        <style>
+            .top-padding{
+                padding-top: 10px;
+            }
+        </style>
     </head>
-    <body style="text-align:center;">
-        <table style="margin:auto;">
-            <tr>
-                <td>Sprite Size:</td> 
-                <td><input type='text' id='spriteSize' placeholder="Sprite Size" value="16" /></td>
-            </tr>
-            
-            <tr>
-                <td>Extrude Size:</td> 
-                <td><input type='text' id='extrudeSize' placeholder="Extrude Size" value="1" /></td>
-            </tr>
-            
-            <tr>
-                <td>Show Animation:</td> 
-                <td><input type='checkbox' id='showAnimation' /></td>
-            </tr>
-            
-            <tr>
-                <td>Animation Time(ms):</td> 
-                <td><input type='text' id='animationTime' placeholder="Animation Time" value="60" /></td>
-            </tr>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4 h-100" style="background-color:#00AA66">
+                    <div class="row top-padding">
+                        <div class="col">Sprite Size:</div> 
+                        <div class="col"><input type='text' id='spriteSize' placeholder="Sprite Size" value="16" /></div>
+                    </div>
+                    <div class="row top-padding">
+                        <div class="col">Extrude Size:</div> 
+                        <div class="col"><input type='text' id='extrudeSize' placeholder="Extrude Size" value="1" /></div>
+                    </div>
+                    <div class="row top-padding">
+                        <div class="col">Show Animation:</div> 
+                        <div class="col"><input type='checkbox' id='showAnimation' /></div>
+                    </div>
+                    <div class="row top-padding">
+                        <div class="col">Animation Time(ms):</div> 
+                        <div class="col"><input type='text' id='animationTime' placeholder="Animation Time" value="60" /></div>
+                    </div>
+                    <div class="row top-padding">
+                        <div class="col">Click here to save! <a href="#" class="btn btn-primary" id="btn-download">Download</a></div>
+                    </div>
+                </div>
+                <div class="col-8 h-100">
+                    <div class="row top-padding">
+                        <div class="col"><input type='file' id='imgfile' /></div>
+                        <div class="col"><input type='button' id='btnLoad' value='Load' onclick='loadImage();' /></div>
+                    </div>
 
-        </table>
+                    <div class="row top-padding">
+                        <canvas id="canvas" width="0" height="0" style="margin:auto;">Your Browser does not support canvas</canvas>
+                    </div>
+                
+                    <div class="row top-padding">
+                        <div class="col">
+                            <b>Instructions:</b>
+                        </div>
+                        <div class="col">
+                            <ol>
+                                <li>Set your sprite size</li>
+                                <li>Set your Extrude Size</li>
+                                <li>Choose the file</li>
+                                <li>Click Load</li>
+                            <ol>
+                        </div>
+                    </div>
 
-        <input type='file' id='imgfile' />
-        <input type='button' id='btnLoad' value='Load' onclick='loadImage();' /><br>
-    
-        <canvas id="canvas">Your Browser does not support canvas</canvas><br>
-        <b>Instructions:</b>
-        <div style="text-align:left; width:500px; margin:auto;">
-            <ol>
-                <li>Set your sprite size</li>
-                <li>Set your Extrude Size</li>
-                <li>Choose the file</li>
-                <li>Click Load</li>
-            <ol>
+                </div>
+            </div>
         </div>
-        Click here to save! <a href="#" class="button" id="btn-download">Download</a>
+
         <script>
             var input, file, fr, img;
             function loadImage() {
@@ -63,23 +81,12 @@
                 }
             }
 
-            //Create and load the image 
+            //Create and load the source image 
             function createImage() {
                 img = new Image();
-                img.onload = imageLoaded;
+                img.onload = drawImage;
                 img.src = fr.result;
             }
-
-            // function imageLoaded() {
-            //     //
-            //     var canvas = document.getElementById("canvas")
-            //     canvas.width = img.width;
-            //     canvas.height = img.height;
-            //     var ctx = canvas.getContext("2d");
-            //     ctx.drawImage(img,0,0);
-            //     alert(canvas.toDataURL("image/png"));
-            // }
-        
 
             function write(msg) {
                 console.log(msg);
@@ -89,5 +96,17 @@
             }
         </script>
         <script type="text/javascript" src="imageExtruder.js"></script>
+        <script type="text/javascript" src="libraries/jquery-3.2.1.min.js"></script>
+
+        <script type="text/javascript" src="libraries/tether-1.3.3/dist/js/tether.min.js"></script>
+        <link rel="stylesheet" href="libraries/tether-1.3.3/dist/css/tether.min.css"></script>
+        <link rel="stylesheet" href="libraries/tether-1.3.3/dist/css/tether-theme-arrows-dark.min.css"></script>
+
+
+        <script type="text/javascript" src="libraries/bootstrap-4.0.0/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="libraries/bootstrap-4.0.0/css/bootstrap.min.css"></script>
+        <link rel="stylesheet" href="libraries/bootstrap-4.0.0/css/bootstrap-grid.min.css"></script>
+        <link rel="stylesheet" href="libraries/bootstrap-4.0.0/css/bootstrap-reboot.min.css"></script>
+        
     </body>
 </html>
