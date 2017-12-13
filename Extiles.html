@@ -1,36 +1,34 @@
 <html>
     <head>
-        <style>
-            .top-padding{
-                padding-top: 10px;
-            }
-        </style>
     </head>
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-4 h-100" style="background-color:#00AA66">
+                <div class="col-4 h-100 left-bar">
                     <div class="row top-padding">
                         <div class="col">Sprite Size:</div> 
-                        <div class="col"><input type='text' id='spriteSize' placeholder="Sprite Size" value="16" /></div>
+                        <div class="col"><input class="form-control" type='text' id='spriteSize' placeholder="Sprite Size" value="16" /></div>
                     </div>
                     <div class="row top-padding">
                         <div class="col">Extrude Size:</div> 
-                        <div class="col"><input type='text' id='extrudeSize' placeholder="Extrude Size" value="1" /></div>
+                        <div class="col"><input class="form-control" type='text' id='extrudeSize' placeholder="Extrude Size" value="1" /></div>
                     </div>
+                    <!-- 
                     <div class="row top-padding">
                         <div class="col">Show Animation:</div> 
-                        <div class="col"><input type='checkbox' id='showAnimation' /></div>
+                        <div class="col"><input class="form-control" type='checkbox' id='showAnimation' /></div>
                     </div>
                     <div class="row top-padding">
                         <div class="col">Animation Time(ms):</div> 
-                        <div class="col"><input type='text' id='animationTime' placeholder="Animation Time" value="60" /></div>
+                        <div class="col"><input class="form-control" type='text' id='animationTime' placeholder="Animation Time" value="60" /></div>
                     </div>
-                    <div class="row top-padding">
-                        <div class="col">Click here to save! <a href="#" class="btn btn-primary" id="btn-download">Download</a></div>
-                    </div>
+                    -->
+                    <div class="row top-padding download-button">
+                        <div class="col"><a href="#" class="btn btn-success w-100 h-100" id="btn-download">Download</a></div>
+                    </div> 
+                    
                 </div>
-                <div class="col-8 h-100">
+                <div class="col-8 h-100 right-bar">
                     <div class="row top-padding">
                         <div class="col"><input type='file' id='imgfile' /></div>
                         <div class="col"><input type='button' id='btnLoad' value='Load' onclick='loadImage();' /></div>
@@ -65,7 +63,7 @@
                     write("The file API isn't supported on this browser yet.");
                     return;
                 }
-                
+
                 input = document.getElementById('imgfile');
                 if (!input) {
                     write("Um, couldn't find the imgfile element.");
@@ -108,5 +106,35 @@
         <link rel="stylesheet" href="libraries/bootstrap-4.0.0/css/bootstrap-grid.min.css"></script>
         <link rel="stylesheet" href="libraries/bootstrap-4.0.0/css/bootstrap-reboot.min.css"></script>
         
+        <style>
+            body{
+                color:#FFFFFF;
+            }
+
+            .top-padding{
+                padding-top: 10px;
+            }
+
+            .left-bar{
+                background-color:#0066AA;
+            }
+
+            .right-bar{
+                background-color:#3388FF;
+            }
+
+            .download-button{
+                position: absolute;
+                bottom:10px;
+                width:100%;
+                height:80px;
+                vertical-align: middle;
+                font-size: 32px;
+            }
+
+            .download-button div a{
+                font-size: inherit;
+            }
+        </style>
     </body>
 </html>
