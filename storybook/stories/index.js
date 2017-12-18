@@ -1,11 +1,23 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { CloseButton, MaximizeButton, MinimizeButton } from '../../src/component/button/window-buttons';
+import createLayout from '../../src/component/layout';
 
-storiesOf('Button', module)
-  .add('with text', () => (
-    <button onClick={action('clicked')}>Hello Button</button>
-  ))
-  .add('with some emoji', () => (
-    <button onClick={action('clicked')}>😀 😎 👍 💯</button>
-  ));
+const Layout = createLayout();
+
+storiesOf('Main Layout', module)
+.add('Main Layout', () => (
+  <Layout />
+));
+
+storiesOf('Window Buttons', module)
+.add('Close Button', () => (
+  <CloseButton />
+))
+.add('Maximize Button', () => (
+  <MaximizeButton />
+))
+.add('Minimize Button', () => (
+  <MinimizeButton />
+));
