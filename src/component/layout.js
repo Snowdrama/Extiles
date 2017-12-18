@@ -5,8 +5,9 @@ import { Colors } from '../style/color';
 import { FontSizes } from '../style/size';
 import { CloseButton, MaximizeButton, MinimizeButton } from './button/window-buttons';
 import { Sidebar } from './sidebar/sidebar';
-import { DownloadButton } from './sidebar/sidebar-components/download-button';
+import { ExportButton } from './sidebar/sidebar-components/download-button';
 import { ExtrudeWidth, TileSize } from './sidebar/sidebar-components/sliders';
+import { ShowSliceGrid } from './sidebar/sidebar-components/checkboxes';
 
 const topBarHeight = '2.5em';
 
@@ -25,7 +26,7 @@ const Container = styled.div`
     margin: 0;
     padding: 0;
 
-    background-color: ${ Colors.LightGrey };
+    background-color: ${ Colors.DarkGrey };
     font-family: 'Concert One', cursive;
 `;
 
@@ -42,11 +43,18 @@ const Topbar = styled.div`
 const TopbarButtonContainer = styled.div`
     float: right;
 `;
-const Panel = styled.div`
+export const Panel = styled.div`
     background-color: ${ Colors.DarkLemonGreen };
     padding:5px;
     margin 5px 0px;
     border-radius:3px;
+`;
+export const Tab = styled.div`
+    padding:10px;
+    margin 5px -5px 0px 0px ;
+    border-radius:10px 0px 0px 10px;
+    background-color: ${props => props.selected ? Colors.LemonOrange : Colors.DarkLemonGreen };
+    color: ${props => props.selected ? Colors.DarkGrey : Colors.LightLemonGreen }
 `;
 
 
@@ -73,15 +81,26 @@ export default () => class Layout extends Component {
                         Extude Width<br/>
                         <ExtrudeWidth />
                     </Panel>
-
                     <Panel>
-                        Preview<br/>
-                        Image Preview will go here
+                        <ShowSliceGrid/> Show Tile Slice Grid
                     </Panel>
+                    <br/>
+                    Open Images<br/>
+                    <Tab selected>
+                        Active Tab<br/>
+                        Image Preview will go here
+                    </Tab>
+                    <Tab>
+                        Tab Example<br/>
+                    </Tab>
+                    <Tab>
+                        Tab Example<br/>
+                    </Tab>
+                    <Tab>
+                        Tab Example<br/>
+                    </Tab>
                     
-                    <DownloadButton>
-                        Download
-                    </DownloadButton>
+                    <ExportButton/>
                 </Sidebar>
             </Container>
         );

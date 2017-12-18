@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Colors, DarkGrey, LightGrey, LemonGreen, LightLemonGreen, LemonOrange, Transparent, BoxShadowColor, BoxShadowColorHover } from '../../../style/color';
+import { Colors } from '../../../style/color';
 import { FontSizes } from '../../../style/size';
 
-export const DownloadButton = styled.button`
+const BuildExportButton = styled.button`
     padding: 10px;
     margin: 10px; /* 10px on either side */
     width:calc(100% - 20px - 10px); /* 10px on either side 5px on either side for sidebar padding = 20px-10px */
@@ -16,7 +16,7 @@ export const DownloadButton = styled.button`
 
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 
-    background-color: ${ Transparent }; /** White with 0 alpha */
+    background-color: ${ Colors.Transparent }; /** White with 0 alpha */
     &:hover {
         box-shadow: 0 10px 20px ${ Colors.BoxShadowColorHover }, 0 6px 6px rgba(0,0,0,0.23);
         background-color: ${ Colors.LemonOrange }; /** Full alpha */
@@ -29,7 +29,7 @@ export const DownloadButton = styled.button`
 
 
     /* Font stuff*/
-    font-size: ${ FontSizes.LargeFont };
+    font-size: ${ FontSizes.NormalFont };
     color: ${ Colors.LemonOrange };\
     font-family:inherit;
 
@@ -37,3 +37,9 @@ export const DownloadButton = styled.button`
     position:absolute;
     bottom:5px;
 `;
+
+export const ExportButton = function(){
+    return (
+        <BuildExportButton>Export Current Image</BuildExportButton>
+    );
+};
