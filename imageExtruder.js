@@ -4,8 +4,8 @@ function drawImage() {
     var extrudeSize = parseInt(document.getElementById("extrudeSize").value);
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
-    var showAnimation = document.getElementById("showAnimation").checked;
-    var animationTime = parseInt(document.getElementById("animationTime").value);
+    // var showAnimation = document.getElementById("showAnimation").checked;
+    // var animationTime = parseInt(document.getElementById("animationTime").value);
 
     numberOfTilesWide = (img.width/spriteSize);
     numberOfTilesHigh = (img.height/spriteSize);

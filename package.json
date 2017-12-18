@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JayPC/Extiles.git"
+    "url": "git+https://github.com/Snowdrama/Extiles.git"
   },
   "keywords": [
     "tiles",
@@ -30,9 +30,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JayPC/Extiles/issues"
+    "url": "https://github.com/Snowdrama/Extiles/issues"
   },
-  "homepage": "https://github.com/JayPC/Extiles#readme",
+  "homepage": "https://github.com/Snowdrama/Extiles#readme",
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
