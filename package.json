@@ -11,7 +11,9 @@
     "bundle": "npm run build && npm run bundle-win32-x64",
     "bundle-win32-x64": "electron-packager . --platform=win32 --arch=x64",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "start-storybook -p 9001 -c storybook"
+    "storybook": "start-storybook -p 9001 -c storybook -s ./",
+    "build-storybook": "rimraf dist/storybook && mkdirp dist/storybook && build-storybook -c storybook -s ./ -o dist/storybook",
+    "cleanup": "rimraf dist"
   },
   "repository": {
     "type": "git",

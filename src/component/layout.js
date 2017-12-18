@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Phone, Tablet, Laptop, Desktop } from '../style/responsive';
-import { LightGrey, LemonGreen, LightLemonGreen } from '../style/color';
+import { LightGrey, LemonGreen, LightLemonGreen, LemonOrange } from '../style/color';
+import { CloseButton, MaximizeButton, MinimizeButton } from './button/window-buttons';
+
+const topBarHeight = '2.5em';
 
 const Container = styled.div`
     position: absolute;
@@ -15,10 +18,24 @@ const Container = styled.div`
     background-color: ${ LightGrey };
 `;
 
+const Topbar = styled.div`
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    height: ${topBarHeight};
+    background-color: ${ LemonOrange };
+`;
+
+const TopbarButtonContainer = styled.div`
+    float: right;
+`;
+
 const Sidebar = styled.div`
     position: absolute;
     left: 0;
-    top: 0;
+    top: ${topBarHeight};
     bottom: 0;
 
     width: 15em;
@@ -27,27 +44,19 @@ const Sidebar = styled.div`
     color: ${ LightLemonGreen };
 `;
 
-const DropArea = styled.div`
-    margin-left: auto;
-    margin-right: auto;
-    width: 10em;
-    height: 10em;
-    margin: 1em;
-    padding: .5em;
-
-    border: .5em dashed ${ LightLemonGreen };
-    border-radius: .5em;
-`;
-
 export default () => class Layout extends Component {
     render() {
         return (
             <Container>
-                <Sidebar>
-                    <DropArea>
-                        Drop your sprite file here.
-                    </DropArea>
-                </Sidebar>
+                <Topbar>
+                    Extiles
+                    <TopbarButtonContainer>
+                        <MinimizeButton />
+                        <MaximizeButton />
+                        <CloseButton />
+                    </TopbarButtonContainer>
+                </Topbar>
+                <Sidebar />
             </Container>
         );
     }
