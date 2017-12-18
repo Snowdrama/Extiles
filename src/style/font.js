@@ -1,0 +1,1 @@
+export const MainFont = '#EAF7CF';
