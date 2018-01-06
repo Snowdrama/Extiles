@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const createWindowButton = (backgroundImage) => styled.button`
+const createWindowButton = (backgroundImage, elementId) => styled.button.attrs({
+    id: elementId
+})`
     background-color: #d5754d;
     width: 40px;
     height: 36px;
@@ -23,6 +25,6 @@ const createWindowButton = (backgroundImage) => styled.button`
     }
 `;
 
-export const CloseButton = createWindowButton('content/close.png');
-export const MaximizeButton = createWindowButton('content/maximize.png');
-export const MinimizeButton = createWindowButton('content/minimize.png');
+export const CloseButton = createWindowButton('content/close.png',       'close-btn');
+export const MaximizeButton = createWindowButton('content/maximize.png', 'max-btn');
+export const MinimizeButton = createWindowButton('content/minimize.png', 'min-btn');

@@ -29,3 +29,36 @@ storiesOf('Window Buttons', module)
 .add('Minimize Button', () => (
   <MinimizeButton />
 ));
+
+storiesOf('Sidebar Elements', module)
+.add('Tile Size', () => (
+  <Sidebar>
+    <Panel>
+        Tile Size<br/>
+        <TileSize />
+    </Panel>
+  </Sidebar>
+))
+.add('Extrude Width', () => (
+  <Sidebar>
+    <Panel>
+        Extude Width<br/>
+        <ExtrudeWidth />
+    </Panel>
+  </Sidebar>
+))
+.add('Selected Tab', () => (
+  <Sidebar>
+    <Tab selected>
+      Active Tab<br/>
+      Image Preview will go here
+    </Tab>
+  </Sidebar>
+))
+.add('Unselected Tab', () => (
+  <Sidebar>
+    <Tab>
+      Inactive Tab<br/>
+    </Tab>
+  </Sidebar>
+));

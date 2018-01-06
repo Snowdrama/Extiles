@@ -8,6 +8,8 @@ import { Sidebar } from './sidebar/sidebar';
 import { ExportButton } from './sidebar/sidebar-components/download-button';
 import { ExtrudeWidth, TileSize } from './sidebar/sidebar-components/sliders';
 import { ShowSliceGrid } from './sidebar/sidebar-components/checkboxes';
+import { MainContent } from './content/content-container';
+import { CanvasComponent } from './content/main-canvas';
 
 const topBarHeight = '2.5em';
 
@@ -100,8 +102,11 @@ export default () => class Layout extends Component {
                         Tab Example<br/>
                     </Tab>
                     
-                    <ExportButton/>
+                    <ExportButton />
                 </Sidebar>
+                <MainContent>
+                    <CanvasComponent/>
+                </MainContent>
             </Container>
         );
     }
